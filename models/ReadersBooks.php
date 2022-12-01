@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use DateTime;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\Expression;
@@ -38,7 +39,7 @@ class ReadersBooks extends \yii\db\ActiveRecord
             ],
         ];
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -85,5 +86,11 @@ class ReadersBooks extends \yii\db\ActiveRecord
     public function getReaders()
     {
         return $this->hasOne(Readers::class, ['id' => 'readers_id']);
+    }
+
+    public static function getEndTime($created_at, $duration) {
+        $end_time = new DateTime($created_at);
+        $end_time = $end_time->modify('+'.$duration.' day');
+        return $end_time->format('Y-m-d H:i:s');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Symfony\Component\CssSelector\Parser\Reader;
 use Yii;
 
 /**
@@ -33,7 +34,7 @@ class Readers extends \yii\db\ActiveRecord
             [['full_name'], 'required'],
         ];
     }
-
+    
     /**
      * {@inheritdoc}
      */
